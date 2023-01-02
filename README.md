@@ -1,3 +1,5 @@
+v1 branch has no routing. Compare it with master branch which uses routing!
+
 # AngularDemoRouting
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
