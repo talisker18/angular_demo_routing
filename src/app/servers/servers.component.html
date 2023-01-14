@@ -1,7 +1,12 @@
 <div class="row">
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
+      <!--queryParams is not a new directive but an additional bindable property for routerLink-->
+      <!--we can edit a server when the query param allowEdit = '1'. with '0' we are not allowed-->
       <a
+        [routerLink]="['/servers',server.id]"
+        [queryParams]="{allowEdit:server.id === 3? '1' : '0'}"
+        fragment="loading"
         href="#"
         class="list-group-item"
         *ngFor="let server of servers">
@@ -10,9 +15,12 @@
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
+    <!--<button class="btn btn-primary" (click)="onReload()">Reload Servers (broken button!!)</button>
     <app-edit-server></app-edit-server>
     <hr>
-    <app-server></app-server>
+    <app-server></app-server>-->
+    <router-outlet></router-outlet> <!--this will load the <app-server> component because its a child and it matches the route of ServerComponent in app.module.ts. 
+      when we click on a server (a tag above), the route /servers/<server_id> is loaded. This matches the child route defined in app.module.ts-->
   </div>
 </div>
 

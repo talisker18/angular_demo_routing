@@ -2,15 +2,17 @@
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
       <a
+      [routerLink]="['/users',currentUser.id, currentUser.name]"
         href="#"
         class="list-group-item"
-        *ngFor="let user of users">
-        {{ user.name }}
+        *ngFor="let currentUser of users">
+        {{ currentUser.name }}
       </a>
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <app-user></app-user>
+    <!--<app-user></app-user>-->
+    <router-outlet></router-outlet> <!--this will load the <app-user> component because its a child. an it will load into current loaded page, not on a new page-->
   </div>
 </div>
 

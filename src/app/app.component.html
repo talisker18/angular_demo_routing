@@ -2,25 +2,27 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#">Home</a></li>
-        <li role="presentation"><a href="#">Servers</a></li>
-        <li role="presentation"><a href="#">Users</a></li>
+        <!--using routerLink, the app gets not loaded newly after each navigation click! Awesome!!-->
+
+        <!--how paths work: with /path we use the absolute path. Without / or with './', we are using relative path (appending the current path)
+        for example we are on the server path http://localhost:4200/servers. On this page we have a reload link, for example <a routerLink="servers">Reload!</a>
+        this would use the relative path because there is no leading '/'. The URL then would be wrong, namely http://localhost:4200/servers/servers (because we are already on http://localhost:4200/servers)
+        
+        -->
+
+        <!--routerLinkActiveOptions: here we have to use property binding because we have to pass a JS object. This makes sure that the 'Home' is not active when
+        we are on servers or users tab-->
+        <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/">Home</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/servers">Servers</a></li>
+        <li role="presentation" routerLinkActive="active"><a routerLink="/users">Users</a></li>
       </ul>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <app-home></app-home>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <app-users></app-users>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <app-servers></app-servers>
+      <!--<app-home></app-home>-->
+      <router-outlet></router-outlet> <!--marks that the app works with routing. the app.component is the root component, 
+        so define router-outlet here. Now if we hit a URL path, the corresponding component is loaded-->
     </div>
   </div>
 </div>
