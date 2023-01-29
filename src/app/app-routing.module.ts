@@ -9,6 +9,7 @@ import { ServerComponent } from './servers/server/server.component';
 import { Routes, RouterModule} from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from "./auth-guard.service";
+import { CanDeactivateGuard } from "./servers/edit-server/can-deactivate-guard.service";
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -22,7 +23,9 @@ const appRoutes: Routes = [
        component: ServersComponent, 
        children:[ 
         {path: ':id', component: ServerComponent}, //for child routes we then also use <router-outlet> element
-        {path: ':id/edit', component: EditServerComponent}
+        //following guard is used to control when the user wants to edit a server and then accidentally clicks on wrong button, for example on home button
+        //the user should be asked: 'do you want leave without saving?' or similar
+        {path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard]}
         ]
     },
     {path: 'not-found', component: PageNotFoundComponent},

@@ -16,6 +16,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
+import { CanDeactivateGuard } from './servers/edit-server/can-deactivate-guard.service';
 
 
 //routes are moved to the separate module 'app-routing.module'
@@ -72,7 +73,7 @@ Now, you only get redirected, if the full path is ''  (so only if you got NO 
     AppRoutingModule
     //RouterModule.forRoot(appRoutes) //with forRoot(appRoutes) Angular is now aware of our defined routes
   ],
-  providers: [ServersService, AuthGuard, AuthService],
+  providers: [ServersService, AuthGuard, AuthService, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

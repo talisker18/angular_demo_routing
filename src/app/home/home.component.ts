@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -19,6 +20,14 @@ export class HomeComponent implements OnInit {
 
     //in the following we use routerLink the programmatic way. see also usecase in a html file: servers.component.html
     this.router.navigate(['/servers',id, 'edit'], {queryParams: {allowEdit:'1'}, fragment: 'loading'}); //in the array, define the path parts, like /servers/server2 -> this would be ['/servers', '/server2']
+  }
+
+  onLogin(){
+    this.authService.login();
+  }
+
+  onLogout(){
+    this.authService.logout();
   }
 
 }
